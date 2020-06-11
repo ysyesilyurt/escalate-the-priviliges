@@ -7,7 +7,7 @@
 void holy_grail() {
   char b[1024];
   char a[256];
-  strcpy(a, "echo \"I am Arthur, King of the Britons\n\"");
+  strcpy(a, "echo \"I am Mustafa Kemal, founder of the great Turkish Nation!\n\"");
   fgets(b, 1024, stdin);
   strcat(a, b);
   for (int i = 0; i < strlen(b); i++) {
